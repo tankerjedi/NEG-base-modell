@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#inculde "base_modell.h"
+//#inculde "base_modell.h"
 
 int main()
 {
