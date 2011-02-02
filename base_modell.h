@@ -38,3 +38,7 @@ float average_real_wage(float real_wage1, float real_wage2);
 
 float new_lamda(float average_real_wage0, float real_wage1); //The value of the population share in the next 
 
+//Solver
+
+//void solve(float lambda0, float pgamma, float mu, float sigma, float T, int iteration limit = 500);
+
