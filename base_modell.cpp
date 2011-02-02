@@ -24,12 +24,12 @@ float income_region2(float wage_region2)
 return 0;
 };
 
-float price_index(g_region1(float wage_region1, float wage_region2)
+float price_index_region1(float wage_region1, float wage_region2)
 {
 return 0;
 };
 
-float price_index(g_region2(float wage_region1, float wage_region2)
+float price_index_region2(float wage_region1, float wage_region2)
 {
 return 0;
 };
