@@ -7,7 +7,7 @@ float lambda = 0.5; //Region's population share in region1 parameter
 float pgamma =1; //Speed of population moving 
 
 float  mu = 0.5; //Cobb-Douglas utility function parameter
-float sigma = 1; //CES utility fucnion parameter
+float sigma = 5; //CES utility fucnion parameter
 
 float T = 1.2; //Transportation cost
 
