@@ -9,6 +9,7 @@ printf("Simulation starts\n");
 
 printf("Wage in region1 is: %4.2f\n",wage_region1( income_region1(1), income_region2(1), price_index_region1(1,1), price_index_region2(1,1)));
 
+printf("Value of goal function: %4.2f\n",goal_function(1,1,1,1));
 return 0;
 }
 
@@ -68,4 +69,13 @@ float new_lamda(float average_real_wage0, float real_wage1) //The value of the p
 {
 return 0;
 
+};
+
+//Solver
+
+float goal_function(float wage1, float wage2, float price_index1, float price_index2)
+{
+return pow((price_index_region1(wage1,wage2) - price_index1),2) + pow((price_index_region2(wage1,wage2) - price_index2),2)
++ pow(wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage1,2) +
+pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage2,2);
 };

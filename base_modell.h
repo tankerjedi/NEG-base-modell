@@ -40,5 +40,7 @@ float new_lamda(float average_real_wage0, float real_wage1); //The value of the 
 
 //Solver
 
+float goal_function(float wage1, float wage2, float price_index1, float price_index2);
+
 //void solve(float lambda0, float pgamma, float mu, float sigma, float T, int iteration limit = 500);
 
