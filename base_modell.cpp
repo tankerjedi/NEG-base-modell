@@ -79,3 +79,24 @@ return pow((price_index_region1(wage1,wage2) - price_index1),2) + pow((price_ind
 + pow(wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage1,2) +
 pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage2,2);
 };
+
+float dwage_region1(float wage1, float wage2, float price_index1, float price_index2)
+{
+return 0;
+}; 
+
+float dwage_region2(float wage1, float wage2, float price_index1, float price_index2)
+{
+return 0;
+};
+
+float dprice_index_region1(float wage1, float wage2, float price_index1, float price_index2)
+{
+return 0;
+}
+;
+
+float dprice_index_region2(float wage1, float wage2, float price_index1, float price_index2)
+{
+return 0;
+};
