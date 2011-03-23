@@ -11,7 +11,9 @@ printf("Wage in region1 is: %4.2f\n",wage_region1( income_region1(1), income_reg
 
 printf("Value of goal function: %4.2f\n",goal_function(1,1,price_index_region1(1,1),price_index_region2(1,1)));
 
-printf("Value of dL/dw: %4.2f\n", dwage_region1(1.1,1,price_index_region1(1.1,1),price_index_region2(1.1,1)));
+printf("Value of dL/dw1: %4.2f\n", dwage_region1(1.1,1,price_index_region1(1.1,1),price_index_region2(1.1,1)));
+
+printf("Value of dL/dw2: %4.2f\n", dwage_region2(1,1,price_index_region1(1,1),price_index_region2(1,1)));
 
 return 0;
 }
@@ -100,7 +102,13 @@ return
 
 float dwage_region2(float wage1, float wage2, float price_index1, float price_index2)
 {
-return 0;
+
+return 
+2 * ( price_index_region1(wage1,wage2)- price_index1) * (1/(1 - sigma)) * pow( price_index_region1(wage1,wage2)  ,sigma)  * (1- sigma) * (1 - lambda) * pow(wage2, -sigma) * pow( T, 1 - sigma) + 
+2 * ( price_index_region2(wage1,wage2)- price_index2) * (1/(1 - sigma)) * pow( price_index_region2(wage1,wage2)  ,sigma)  * (1- sigma) * (1 - lambda) * pow(wage2, -sigma) + 
+2 * (wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage1) * ( 1 / sigma) *  pow(wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * mu * (1 - lambda) * pow ( price_index2 / T, sigma - 1) +
+2 * (wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage2) * ( ( 1 / sigma) *  pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * mu * (1 - lambda) * pow ( price_index2 , sigma - 1) - 1);
+
 };
 
 float dprice_index_region1(float wage1, float wage2, float price_index1, float price_index2)
