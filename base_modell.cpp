@@ -9,15 +9,17 @@ printf("Simulation starts\n");
 
 printf("Wage in region1 is: %4.2f\n",wage_region1( income_region1(1), income_region2(1), price_index_region1(1,1), price_index_region2(1,1)));
 
-printf("Value of goal function: %4.2f\n",goal_function(1,1,price_index_region1(1,1),price_index_region2(1,1)));
+printf("Value of goal function: %4.10f\n",goal_function(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-printf("Value of dL/dw1: %4.2f\n", dwage_region1(1.1,1,price_index_region1(1.1,1),price_index_region2(1.1,1)));
+printf("Value of dL/dw1: %4.2f\n", dwage_region1(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-printf("Value of dL/dw2: %4.2f\n", dwage_region2(1,1,price_index_region1(1,1),price_index_region2(1,1)));
+printf("Value of dL/dw2: %4.2f\n", dwage_region2(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-printf("Value of dL/dG1: %4.2f\n", dprice_index_region1(1,1,price_index_region1(1,1),price_index_region2(1,1)));
+printf("Value of dL/dG1: %4.2f\n", dprice_index_region1(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-printf("Value of dL/dG2: %4.2f\n", dprice_index_region2(1,1,price_index_region1(1,1),price_index_region2(1,1)));
+printf("Value of dL/dG2: %4.2f\n", dprice_index_region2(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
+
+solve();
 
 return 0;
 }
@@ -135,3 +137,41 @@ return
 2 * (wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage2) *  ( 1 / sigma) *  pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * (mu * (1 - lambda) * wage2 + (1 - mu) / 2 ) * (sigma - 1) * pow ( price_index2 , sigma - 2) ;
 
 };
+
+float solve() 
+{
+w1 = 1.1;
+w2 = 1.1;
+float g1 = price_index_region1(w1,w2);
+float g2 = price_index_region2(w1,w2);
+
+float F = goal_function(w1, w2, g1, g2);
+
+//Find a applicable slambda
+
+float slambda = -2;
+
+int i;
+
+for(i = -19;i <= 20; i++)
+{
+
+//It is good, if we get lower value than the original goal function and the new goal function is lower too
+if 
+(F > goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2+ i * 0.1*dwage_region2(w1,w2,g1,g2),g1+ i * 0.1 *dprice_index_region1(w1,w2,g1,g2),g2+ i * 0.1 *dprice_index_region2(w1,w2,g1,g2)) 
+
+&&  
+
+goal_function(w1+i*0.1*dwage_region1(w1,w2,g1,g2),w2+i * 0.1 *dwage_region2(w1,w2,g1,g2),g1+i * 0.1 *dprice_index_region1(w1,w2,g1,g2),g2+ i * 0.1 *dprice_index_region2(w1,w2,g1,g2)) > goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2+slambda*dwage_region2(w1,w2,g1,g2),g1+slambda*dprice_index_region1(w1,w2,g1,g2),g2+slambda*dprice_index_region2(w1,w2,g1,g2)) )
+
+{
+slambda = i * 0.1;
+}
+
+printf("%f Az slambda értéke %f a %f érték mellett\n",F,slambda,goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2+slambda*dwage_region2(w1,w2,g1,g2),g1+slambda*dprice_index_region1(w1,w2,g1,g2),g2+slambda*dprice_index_region2(w1,w2,g1,g2)));
+
+}
+
+return 0;
+}
+
