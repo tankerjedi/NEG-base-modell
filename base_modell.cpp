@@ -36,27 +36,27 @@ return mu * lambda * wage1 + (1 - mu) / 2;
 
 float income_region2(float wage2)
 {
-return mu * (1 - lambda) *wage2 + (1 - mu) / 2;
+return mu * (1 - lambda) * wage2 + (1 - mu) / 2;
 };
 
 float price_index_region1(float wage1, float wage2)
 {
-return pow(lambda * pow (wage1, 1 - sigma) + (1 - lambda) * pow (wage2 * T, 1 - sigma),(1 / (1 - sigma)));
+return pow(lambda * pow(wage1, 1 - sigma) + (1 - lambda) * pow(wage2 * T, 1 - sigma),(1 / (1 - sigma)));
 };
 
 float price_index_region2(float wage1, float wage2)
 {
-return pow(lambda * pow (wage1 * T, 1 - sigma) + (1 - lambda) * pow (wage2, 1 - sigma),(1 / (1 - sigma)));
+return pow(lambda * pow(wage1 * T, 1 - sigma) + (1 - lambda) * pow(wage2, 1 - sigma),(1 / (1 - sigma)));
 };
 
 float wage_region1(float income1, float income2, float price_index1, float price_index2)
 {
-return pow(income1 * pow (price_index1, sigma - 1) + income2 * pow (price_index2 / T, sigma -1),(1 /  sigma));
+return pow(income1 * pow(price_index1, sigma - 1) + income2 * pow(price_index2 / T, sigma -1),(1 /  sigma));
 };
 
 float wage_region2(float income1, float income2, float price_index1, float price_index2)
 { 
-return pow(income1 * pow (price_index1 / T, sigma - 1) + income2 * pow (price_index2 , sigma -1),(1 /  sigma));
+return pow(income1 * pow(price_index1 / T, sigma - 1) + income2 * pow(price_index2 , sigma -1),(1 /  sigma));
 };
 
 float real_wage_region1(float wage1, float price_index1)
@@ -149,7 +149,7 @@ float F = goal_function(w1, w2, g1, g2);
 
 //Find a applicable slambdas
 
-float slambda = -2;
+//float slambda = -2;
 
 float slambda_w1 = -2;
 float slambda_w2 = -2;
@@ -253,7 +253,7 @@ w2 = w2 + slambda_w2 * dw2;
 g1 = g1 + slambda_g1 * dg1;
 g2 = g2 + slambda_g2 * dg2;
 F = goal_function(w1,w2,g1,g2);
-printf("w1: %f, w2: %f, g1: %f, g2: %f, célfüggvény értéke: %f\n",w1,w2,g1,g2,F);
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dw1,w2,dw2,g1,dg1,g2,dg2,F);
 } 
 
 return 0;
