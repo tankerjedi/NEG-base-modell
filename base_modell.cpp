@@ -172,10 +172,37 @@ slambda_w1 = i * 0.1;
 
 //slambda_w2
 
+if 
+
+(F > goal_function(w1,w2+i * 0.1 * dwage_region2(w1,w2,g1,g2),g1,g2) 
+&&  
+goal_function(w1,w2+i*0.1*dwage_region2(w1,w2,g1,g2),g1,g2) < goal_function(w1,w2+slambda_w2*dwage_region1(w1,w2,g1,g2),g1,g2)) 
+
+{
+slambda_w2 = i * 0.1;
+}
 //slambda_g1
 
+if 
+
+(F > goal_function(w1,w2,g1 + i * 0.1 * dprice_index_region1(w1,w2,g1,g2),g2) 
+&&  
+goal_function(w1,w2,g1 + i *0.1 * dprice_index_region1(w1,w2,g1,g2),g2) < goal_function(w1,w2,g1 + slambda_g1 * dprice_index_region1(w1,w2,g1,g2),g2)) 
+
+{
+slambda_g1 = i * 0.1;
+}
 //slambda_w2
 
+if 
+
+(F > goal_function(w1,w2,g1,g2 + i * 0.1 * dprice_index_region2(w1,w2,g1,g2)) 
+&&  
+goal_function(w1,w2,g1,g2 + i * 0.1 * dprice_index_region2(w1,w2,g1,g2)) < goal_function(w1, w2, g1, g2 + slambda_g2 * dprice_index_region2(w1,w2,g1,g2))) 
+
+{
+slambda_g2 = i * 0.1;
+}
 
 //It is good, if we get lower value than the original goal function and the new goal function is lower too
 //if 
@@ -194,7 +221,10 @@ slambda_w1 = i * 0.1;
 //Check slambda value
 //printf("%1.1f sor %f Az slambda értéke %f a %f érték mellett\n",i*0.1,F,slambda_w1,goal_function(w1+0.1 * i * dwage_region1(w1,w2,g1,g2),w2+ 0.1 * i *dwage_region2(w1,w2,g1,g2),g1+ 0.1 * i *dprice_index_region1(w1,w2,g1,g2),g2+ 0.1 * i * dprice_index_region2(w1,w2,g1,g2)));
 
-printf("%1.1f sor %f Az slambda értéke %f a %f érték mellett\n",i*0.1,F,slambda_w1,goal_function(w1+0.1 * i * dwage_region1(w1,w2,g1,g2),w2,g1,g2));
+printf("%1.1f sor, F: %1.1f, slambda_w1 %f, %f érték |",i*0.1,F,slambda_w1,goal_function(w1+0.1 * i * dwage_region1(w1,w2,g1,g2),w2,g1,g2));
+printf(" slambda_w2: %1.1f, %f érték |",slambda_w2,goal_function(w1,w2+0.1 * i * dwage_region2(w1,w2,g1,g2),g1,g2));
+printf(" slambda_g1: %1.1f, %f érték |",slambda_g1,goal_function(w1, w2, g1 + 0.1 * i * dprice_index_region1(w1,w2,g1,g2),g2));
+printf(" slambda_g2: %1.1f, %f érték \n",slambda_g2,goal_function(w1, w2, g1, g2 +0.1 * i * dprice_index_region2(w1,w2,g1,g2)));
 }
 
 printf("Az slambda értéke: %f\n",slambda_w1);
