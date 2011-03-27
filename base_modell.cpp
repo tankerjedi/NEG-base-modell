@@ -234,6 +234,11 @@ printf("Az slambda értéke: %f\n",slambda_w1);
 
 float dw1, dw2, dg1, dg2;
 
+//slambda_w1 = -0.01;
+//slambda_w2 = -0.01;
+//slambda_g1 = -0.01;
+//slambda_g2 = -0.01;
+
 for(i = 1; i <= iteration_limit; i++)
 {
 
