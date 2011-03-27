@@ -239,7 +239,7 @@ w2= w2 + slambda_w2 * dwage_region2(w1,w2,g1,g2);
 g1 = g1 + slambda_g1 * dprice_index_region1(w1,w2,g1,g2);
 g2 = g2 + slambda_g2 * dprice_index_region2(w1,w2,g1,g2);
 F = goal_function(w1,w2,g1,g2);
-//printf("w1: %f, w2: %f, g1: %f, g2: %f, célfüggvény értéke: %f\n",w1,w2,g1,g2,F);
+printf("w1: %f, w2: %f, g1: %f, g2: %f, célfüggvény értéke: %f\n",w1,w2,g1,g2,F);
 } 
 
 return 0;
