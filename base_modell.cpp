@@ -158,19 +158,24 @@ for(i = -19;i <= 20; i++)
 
 //It is good, if we get lower value than the original goal function and the new goal function is lower too
 if 
-(F > goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2+ i * 0.1*dwage_region2(w1,w2,g1,g2),g1+ i * 0.1 *dprice_index_region1(w1,w2,g1,g2),g2+ i * 0.1 *dprice_index_region2(w1,w2,g1,g2)) 
+(F > goal_function(w1+i * 0.1 * dwage_region1(w1,w2,g1,g2),w2+ i * 0.1*dwage_region2(w1,w2,g1,g2),g1+ i * 0.1 *dprice_index_region1(w1,w2,g1,g2),g2+ i * 0.1 *dprice_index_region2(w1,w2,g1,g2)) 
 
 &&  
 
-goal_function(w1+i*0.1*dwage_region1(w1,w2,g1,g2),w2+i * 0.1 *dwage_region2(w1,w2,g1,g2),g1+i * 0.1 *dprice_index_region1(w1,w2,g1,g2),g2+ i * 0.1 *dprice_index_region2(w1,w2,g1,g2)) > goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2+slambda*dwage_region2(w1,w2,g1,g2),g1+slambda*dprice_index_region1(w1,w2,g1,g2),g2+slambda*dprice_index_region2(w1,w2,g1,g2)) )
-
+goal_function(w1+i*0.1*dwage_region1(w1,w2,g1,g2),w2+i * 0.1 *dwage_region2(w1,w2,g1,g2),g1+i * 0.1 *dprice_index_region1(w1,w2,g1,g2),g2+ i * 0.1 *dprice_index_region2(w1,w2,g1,g2)) < goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2+slambda*dwage_region2(w1,w2,g1,g2),g1+slambda*dprice_index_region1(w1,w2,g1,g2),g2+slambda*dprice_index_region2(w1,w2,g1,g2)) 
+)
 {
+printf("Hűha \n");
 slambda = i * 0.1;
 }
 
-printf("%f Az slambda értéke %f a %f érték mellett\n",F,slambda,goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2+slambda*dwage_region2(w1,w2,g1,g2),g1+slambda*dprice_index_region1(w1,w2,g1,g2),g2+slambda*dprice_index_region2(w1,w2,g1,g2)));
+
+//Check slambda value
+printf("%d sor %f Az slambda értéke %f a %f érték mellett\n",i,F,slambda,goal_function(w1+0.1 * i * dwage_region1(w1,w2,g1,g2),w2+ 0.1 * i *dwage_region2(w1,w2,g1,g2),g1+ 0.1 * i *dprice_index_region1(w1,w2,g1,g2),g2+ 0.1 * i * dprice_index_region2(w1,w2,g1,g2)));
 
 }
+
+printf("Az slambda értéke: %f\n",slambda);
 
 return 0;
 }
