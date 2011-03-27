@@ -149,6 +149,8 @@ float F = goal_function(w1, w2, g1, g2);
 
 //Find a applicable slambdas
 
+float slambda = -2;
+
 float slambda_w1 = -2;
 float slambda_w2 = -2;
 float slambda_g1 = -2;
@@ -213,7 +215,6 @@ slambda_g2 = i * 0.1;
 //goal_function(w1+i*0.1*dwage_region1(w1,w2,g1,g2),w2+i * 0.1 *dwage_region2(w1,w2,g1,g2),g1+i * 0.1 *dprice_index_region1(w1,w2,g1,g2),g2+ i * 0.1 *dprice_index_region2(w1,w2,g1,g2)) < goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2+slambda*dwage_region2(w1,w2,g1,g2),g1+slambda*dprice_index_region1(w1,w2,g1,g2),g2+slambda*dprice_index_region2(w1,w2,g1,g2)) 
 //)
 //{
-//printf("Hűha \n");
 //slambda = i * 0.1;
 //}
 
