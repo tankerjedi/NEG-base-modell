@@ -176,7 +176,7 @@ if
 
 (F > goal_function(w1,w2+i * 0.1 * dwage_region2(w1,w2,g1,g2),g1,g2) 
 &&  
-goal_function(w1,w2+i*0.1*dwage_region2(w1,w2,g1,g2),g1,g2) < goal_function(w1,w2+slambda_w2*dwage_region1(w1,w2,g1,g2),g1,g2)) 
+goal_function(w1,w2+i*0.1*dwage_region2(w1,w2,g1,g2),g1,g2) < goal_function(w1,w2+slambda_w2*dwage_region2(w1,w2,g1,g2),g1,g2)) 
 
 {
 slambda_w2 = i * 0.1;
@@ -231,13 +231,21 @@ printf("Az slambda értéke: %f\n",slambda_w1);
 
 //Indul az iteráció
 
+float dw1, dw2, dg1, dg2;
+
 for(i = 1; i <= iteration_limit; i++)
 {
 
-w1 = w1 + slambda_w1 * dwage_region1(w1,w2,g1,g2);
-w2= w2 + slambda_w2 * dwage_region2(w1,w2,g1,g2);
-g1 = g1 + slambda_g1 * dprice_index_region1(w1,w2,g1,g2);
-g2 = g2 + slambda_g2 * dprice_index_region2(w1,w2,g1,g2);
+dw1 = dwage_region1(w1,w2,g1,g2);
+dw2 = dwage_region2(w1,w2,g1,g2);
+dg1 = dprice_index_region1(w1,w2,g1,g2);
+dg2 = dprice_index_region2(w1,w2,g1,g2);
+
+
+w1 = w1 + slambda_w1 * dw1;
+w2 = w2 + slambda_w2 * dw2;
+g1 = g1 + slambda_g1 * dg1;
+g2 = g2 + slambda_g2 * dg2;
 F = goal_function(w1,w2,g1,g2);
 printf("w1: %f, w2: %f, g1: %f, g2: %f, célfüggvény értéke: %f\n",w1,w2,g1,g2,F);
 } 
