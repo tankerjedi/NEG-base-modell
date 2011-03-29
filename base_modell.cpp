@@ -123,8 +123,8 @@ float dprice_index_region1(float wage1, float wage2, float price_index1, float p
 return
 -2 * ( price_index_region1(wage1,wage2)- price_index1) + 
 2 * (wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage1) * ( 1 / sigma) *  pow(wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * (mu * lambda * wage1 + (1 - mu) / 2 ) * (sigma - 1) * pow( price_index1 , sigma - 2) +
-2 * (wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage2) *  ( 1 / sigma) *  pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * (mu * lambda * wage1 + (1 - mu) / 2 ) * (sigma - 1) * pow(T , 1 - sigma) * pow( price_index1 , sigma - 2) ;
-
+2 * (wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage2) *  ( 1 / sigma) *  pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * (mu * lambda * wage1 + (1 - mu) / 2 ) * (sigma - 1) * pow(T , 1 - sigma) * pow( price_index1 , sigma - 2) 
+;
 }
 ;
 
@@ -133,8 +133,9 @@ float dprice_index_region2(float wage1, float wage2, float price_index1, float p
 
 return
 -2 * ( price_index_region2(wage1,wage2)- price_index2) + 
-2 * (wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage1) * ( 1 / sigma) *  pow(wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * (mu * (1 - lambda) * wage2 + (1 - mu) / 2 ) * (sigma - 1) * pow(T , sigma - 1)  * pow( price_index2 , sigma - 2) +
-2 * (wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage2) *  ( 1 / sigma) *  pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * (mu * (1 - lambda) * wage2 + (1 - mu) / 2 ) * (sigma - 1) * pow( price_index2 , sigma - 2) ;
+2 * (wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage1) * ( 1 / sigma) *  pow(wage_region1(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * (mu * (1 - lambda) * wage2 + (1 - mu) / 2 ) * (sigma - 1) * pow(T , 1 - sigma)  * pow( price_index2 , sigma - 2) + 
+2 * (wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2) - wage2) *  ( 1 / sigma) *  pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_index2), 1 - sigma) * (mu * (1 - lambda) * wage2 + (1 - mu) / 2 ) * (sigma - 1) * pow( price_index2 , sigma - 2)
+ ;
 
 };
 
@@ -238,7 +239,6 @@ float dw1, dw2, dg1, dg2;
 //slambda_w2 = -0.01;
 //slambda_g1 = -0.01;
 //slambda_g2 = -0.01;
-
 
 printf("w1: %f , w2: %f, g1: %f,  g2: %f, célfüggvény értéke: %f\n",w1,w2,g1,g2,F);
 
