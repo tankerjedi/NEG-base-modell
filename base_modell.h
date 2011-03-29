@@ -1,15 +1,15 @@
 
 //Parameters
 
-int iteration_limit = 100; //Itertaion limit
+int iteration_limit = 500; //Itertaion limit
 
-float lambda = 0.5; //Region's population share in region1 parameter
+float lambda = 0.8; //Region's population share in region1 parameter
 float pgamma =1; //Speed of population moving 
 
-float  mu = 0.5; //Cobb-Douglas utility function parameter
+float  mu = 0.4; //Cobb-Douglas utility function parameter
 float sigma = 5; //CES utility fucnion parameter
 
-float T = 1.2; //Transportation cost
+float T = 1.7; //Transportation cost
 
 float w1 = 1; //bérváltozó kezdeti értéke
 float w2 = 1;
