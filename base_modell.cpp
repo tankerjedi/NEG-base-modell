@@ -235,10 +235,11 @@ printf("Az slambda értéke: %f\n",slambda_w1);
 
 float dw1, dw2, dg1, dg2;
 
-//slambda_w1 = -0.01;
-//slambda_w2 = -0.01;
-//slambda_g1 = -0.01;
-//slambda_g2 = -0.01;
+//slambda_w1 = 0.01;
+//slambda_w2 = 0.01;
+//slambda_g1 = 0.01;
+//slambda_g2 = 0.01;
+
 
 printf("w1: %f , w2: %f, g1: %f,  g2: %f, célfüggvény értéke: %f\n",w1,w2,g1,g2,F);
 
@@ -258,6 +259,8 @@ g2 = g2 + slambda_g2 * dg2;
 F = goal_function(w1,w2,g1,g2);
 printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dw1,w2,dw2,g1,dg1,g2,dg2,F);
 } 
+
+printf("Érték w1 %f és f2 %f; fügvénnyel w1: %f  és w2: %f\n",w1,w2,wage_region1(income_region1(w1),income_region2(w2),g1,g2),wage_region2(income_region1(w1),income_region2(w2),g1,g2));
 
 return 0;
 }
