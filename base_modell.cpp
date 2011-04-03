@@ -19,7 +19,7 @@ printf("Value of dL/dG1: %4.2f\n", dprice_index_region1(1.1,1.1,price_index_regi
 
 printf("Value of dL/dG2: %4.2f\n", dprice_index_region2(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-solve();
+solve2();
 
 return 0;
 }
@@ -139,6 +139,7 @@ return
 
 };
 
+//Simulta nsolver
 float solve() 
 {
 w1 = 1.1;
@@ -235,10 +236,10 @@ printf("Az slambda értéke: %f\n",slambda_w1);
 
 float dw1, dw2, dg1, dg2;
 
-//slambda_w1 = 0.01;
-//slambda_w2 = 0.01;
-//slambda_g1 = 0.01;
-//slambda_g2 = 0.01;
+slambda_w1 = -0.1;
+slambda_w2 = -0.1;
+slambda_g1 = -0.1;
+slambda_g2 = -0.1;
 
 
 printf("w1: %f , w2: %f, g1: %f,  g2: %f, célfüggvény értéke: %f\n",w1,w2,g1,g2,F);
@@ -265,3 +266,114 @@ printf("Érték w1 %f és f2 %f; fügvénnyel w1: %f  és w2: %f\n",w1,w2,wage_r
 return 0;
 }
 
+
+//Solve2 function, solve too slow, sequencial solver
+
+float solve2()
+{
+
+int finomsag = 20;
+w1 = 1.1;
+w2 = 1.1;
+float g1 = price_index_region1(w1,w2);
+float g2 = price_index_region2(w1,w2);
+
+float F = goal_function(w1, w2, g1, g2);
+
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
+//Find a applicable slambdas
+
+//float slambda = -2;
+
+float slambda = -0.1 * finomsag;
+
+int i,j;
+
+for(j = 1; j <= iteration_limit; j++)
+{
+
+
+for(i = -finomsag + 1;i <= finomsag; i++)
+{
+//slambda_w1
+
+if 
+
+(F > goal_function(w1+i * 0.1 * dwage_region1(w1,w2,g1,g2),w2,g1,g2) 
+&&  
+goal_function(w1+i*0.1*dwage_region1(w1,w2,g1,g2),w2,g1,g2) < goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2,g1,g2)) 
+
+{
+slambda = i * 0.1;
+}
+}
+
+w1 = w1 + slambda * dwage_region1(w1,w2,g1,g2);
+
+F = goal_function(w1,w2,g1,g2);
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
+
+//slambda_w2
+
+for(i = -finomsag + 1;i <= finomsag; i++)
+{
+if 
+
+(F > goal_function(w1,w2+i * 0.1 * dwage_region2(w1,w2,g1,g2),g1,g2) 
+&&  
+goal_function(w1,w2+i*0.1*dwage_region2(w1,w2,g1,g2),g1,g2) < goal_function(w1,w2+slambda*dwage_region2(w1,w2,g1,g2),g1,g2)) 
+
+{
+slambda = i * 0.1;
+}
+}
+
+w2 = w2 + slambda * dwage_region2(w1,w2,g1,g2);
+
+F = goal_function(w1,w2,g1,g2);
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
+
+//slambda_g1
+
+for(i = -finomsag + 1;i <= finomsag; i++)
+{
+if 
+
+(F > goal_function(w1,w2,g1 + i * 0.1 * dprice_index_region1(w1,w2,g1,g2),g2) 
+&&  
+goal_function(w1,w2,g1 + i *0.1 * dprice_index_region1(w1,w2,g1,g2),g2) < goal_function(w1,w2,g1 + slambda * dprice_index_region1(w1,w2,g1,g2),g2)) 
+
+{
+slambda = i * 0.1;
+}
+}
+
+g1 = g1 + slambda * dprice_index_region1(w1,w2,g1,g2);
+
+F = goal_function(w1,w2,g1,g2);
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
+
+//slambda_w2
+
+for(i = -finomsag + 1;i <= finomsag; i++)
+{
+if 
+
+(F > goal_function(w1,w2,g1,g2 + i * 0.1 * dprice_index_region2(w1,w2,g1,g2)) 
+&&  
+goal_function(w1,w2,g1,g2 + i * 0.1 * dprice_index_region2(w1,w2,g1,g2)) < goal_function(w1, w2, g1, g2 + slambda * dprice_index_region2(w1,w2,g1,g2))) 
+
+{
+slambda = i * 0.1;
+}
+}
+
+g2 = g2 + slambda * dprice_index_region2(w1,w2,g1,g2);
+
+F = goal_function(w1,w2,g1,g2);
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
+
+}
+
+return goal_function(w1,w2,g1,g2);
+}
