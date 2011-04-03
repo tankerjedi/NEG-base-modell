@@ -272,9 +272,9 @@ return 0;
 float solve2()
 {
 
-int finomsag = 20;
-w1 = 1.1;
-w2 = 1.1;
+int terjedelem = 10;
+w1 = 1.01;
+w2 = 1.01;
 float g1 = price_index_region1(w1,w2);
 float g2 = price_index_region2(w1,w2);
 
@@ -285,7 +285,7 @@ printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény érték
 
 //float slambda = -2;
 
-float slambda = -0.1 * finomsag;
+float slambda = -0.1 * terjedelem;
 
 int i,j;
 
@@ -293,7 +293,7 @@ for(j = 1; j <= iteration_limit; j++)
 {
 
 
-for(i = -finomsag + 1;i <= finomsag; i++)
+for(i = -terjedelem + 1;i <= terjedelem; i++)
 {
 //slambda_w1
 
@@ -315,7 +315,7 @@ printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény érték
 
 //slambda_w2
 
-for(i = -finomsag + 1;i <= finomsag; i++)
+for(i = -terjedelem + 1;i <= terjedelem; i++)
 {
 if 
 
@@ -335,7 +335,7 @@ printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény érték
 
 //slambda_g1
 
-for(i = -finomsag + 1;i <= finomsag; i++)
+for(i = -terjedelem + 1;i <= terjedelem; i++)
 {
 if 
 
@@ -355,7 +355,7 @@ printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény érték
 
 //slambda_w2
 
-for(i = -finomsag + 1;i <= finomsag; i++)
+for(i = -terjedelem + 1;i <= terjedelem; i++)
 {
 if 
 
