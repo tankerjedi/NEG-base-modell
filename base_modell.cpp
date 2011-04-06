@@ -29,54 +29,54 @@ return 0;
 
 //Base modell
 
-float income_region1(float wage1)
+double income_region1(double wage1)
 {
 return mu * lambda * wage1 + (1 - mu) / 2;
 };
 
-float income_region2(float wage2)
+double income_region2(double wage2)
 {
 return mu * (1 - lambda) * wage2 + (1 - mu) / 2;
 };
 
-float price_index_region1(float wage1, float wage2)
+double price_index_region1(double wage1, double wage2)
 {
 return pow(lambda * pow(wage1, 1 - sigma) + (1 - lambda) * pow(wage2 * T, 1 - sigma),(1 / (1 - sigma)));
 };
 
-float price_index_region2(float wage1, float wage2)
+double price_index_region2(double wage1, double wage2)
 {
 return pow(lambda * pow(wage1 * T, 1 - sigma) + (1 - lambda) * pow(wage2, 1 - sigma),(1 / (1 - sigma)));
 };
 
-float wage_region1(float income1, float income2, float price_index1, float price_index2)
+double wage_region1(double income1, double income2, double price_index1, double price_index2)
 {
 return pow(income1 * pow(price_index1, sigma - 1) + income2 * pow(price_index2 / T, sigma -1),(1 /  sigma));
 };
 
-float wage_region2(float income1, float income2, float price_index1, float price_index2)
+double wage_region2(double income1, double income2, double price_index1, double price_index2)
 { 
 return pow(income1 * pow(price_index1 / T, sigma - 1) + income2 * pow(price_index2 , sigma -1),(1 /  sigma));
 };
 
-float real_wage_region1(float wage1, float price_index1)
+double real_wage_region1(double wage1, double price_index1)
 {
 return wage1 * pow(price_index1, -mu);
 };
 
-float real_wage_region2(float wage2, float price_index2)
+double real_wage_region2(double wage2, double price_index2)
 {
 return wage2 * pow(price_index2, -mu);
 };
 
 //Dinamics
 
-float average_real_wage(float real_wage1, float real_wage2)
+double average_real_wage(double real_wage1, double real_wage2)
 {
 return 0;
 };
 
-float new_lamda(float average_real_wage0, float real_wage1) //The value of the population share in the next
+double new_lamda(double average_real_wage0, double real_wage1) //The value of the population share in the next
 {
 return 0;
 
@@ -84,7 +84,7 @@ return 0;
 
 //Solver
 
-float goal_function(float wage1, float wage2, float price_index1, float price_index2)
+double goal_function(double wage1, double wage2, double price_index1, double price_index2)
 {
 
 return 
@@ -95,7 +95,7 @@ pow(wage_region2(income_region1(wage1),income_region2(wage2),price_index1,price_
 
 };
 
-float dwage_region1(float wage1, float wage2, float price_index1, float price_index2)
+double dwage_region1(double wage1, double wage2, double price_index1, double price_index2)
 {
 
 return 
@@ -106,7 +106,7 @@ return
 
 }; 
 
-float dwage_region2(float wage1, float wage2, float price_index1, float price_index2)
+double dwage_region2(double wage1, double wage2, double price_index1, double price_index2)
 {
 
 return 
@@ -117,7 +117,7 @@ return
 
 };
 
-float dprice_index_region1(float wage1, float wage2, float price_index1, float price_index2)
+double dprice_index_region1(double wage1, double wage2, double price_index1, double price_index2)
 {
 
 return
@@ -128,7 +128,7 @@ return
 }
 ;
 
-float dprice_index_region2(float wage1, float wage2, float price_index1, float price_index2)
+double dprice_index_region2(double wage1, double wage2, double price_index1, double price_index2)
 {
 
 return
@@ -140,23 +140,23 @@ return
 };
 
 //Simulta nsolver
-float solve() 
+double solve() 
 {
 w1 = 1.1;
 w2 = 1.1;
-float g1 = price_index_region1(w1,w2);
-float g2 = price_index_region2(w1,w2);
+double g1 = price_index_region1(w1,w2);
+double g2 = price_index_region2(w1,w2);
 
-float F = goal_function(w1, w2, g1, g2);
+double F = goal_function(w1, w2, g1, g2);
 
 //Find a applicable slambdas
 
-//float slambda = -2;
+//double slambda = -2;
 
-float slambda_w1 = -2;
-float slambda_w2 = -2;
-float slambda_g1 = -2;
-float slambda_g2 = -2;
+double slambda_w1 = -2;
+double slambda_w2 = -2;
+double slambda_g1 = -2;
+double slambda_g2 = -2;
 
 int i;
 
@@ -234,12 +234,12 @@ printf("Az slambda értéke: %f\n",slambda_w1);
 
 //Indul az iteráció
 
-float dw1, dw2, dg1, dg2;
+double dw1, dw2, dg1, dg2;
 
-slambda_w1 = -0.1;
-slambda_w2 = -0.1;
-slambda_g1 = -0.1;
-slambda_g2 = -0.1;
+slambda_w1 = -0.2;
+slambda_w2 = -0.2;
+slambda_g1 = -0.2;
+slambda_g2 = -0.2;
 
 
 printf("w1: %f , w2: %f, g1: %f,  g2: %f, célfüggvény értéke: %f\n",w1,w2,g1,g2,F);
@@ -269,23 +269,23 @@ return 0;
 
 //Solve2 function, solve too slow, sequencial solver
 
-float solve2()
+double solve2()
 {
 
 int terjedelem = 10;
 w1 = 1.01;
 w2 = 1.01;
-float g1 = price_index_region1(w1,w2);
-float g2 = price_index_region2(w1,w2);
+double g1 = price_index_region1(w1,w2);
+double g2 = price_index_region2(w1,w2);
 
-float F = goal_function(w1, w2, g1, g2);
+double F = goal_function(w1, w2, g1, g2);
 
 printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
 //Find a applicable slambdas
 
-//float slambda = -2;
+//double slambda = -2;
 
-float slambda = -0.1 * terjedelem;
+double slambda = -0.1 * terjedelem;
 
 int i,j;
 
@@ -311,7 +311,7 @@ slambda = i * 0.1;
 w1 = w1 + slambda * dwage_region1(w1,w2,g1,g2);
 
 F = goal_function(w1,w2,g1,g2);
-printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %1.8f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
 
 //slambda_w2
 

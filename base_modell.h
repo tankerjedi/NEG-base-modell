@@ -3,59 +3,59 @@
 
 int iteration_limit = 100; //Itertaion limit
 
-float lambda = 0.5; //Region's population share in region1 parameter
-float pgamma =1; //Speed of population moving 
+double lambda = 0.5; //Region's population share in region1 parameter
+double pgamma =1; //Speed of population moving 
 
-float  mu = 0.5; //Cobb-Douglas utility function parameter
-float sigma = 5; //CES utility fucnion parameter
+double  mu = 0.5; //Cobb-Douglas utility function parameter
+double sigma = 5; //CES utility fucnion parameter
 
-float T = 1.2; //Transportation cost
+double T = 1.2; //Transportation cost
 
-float w1 = 1; //bérváltozó kezdeti értéke
-float w2 = 1;
+double w1 = 1; //bérváltozó kezdeti értéke
+double w2 = 1;
 
 //Equations
 
 
 //Base modell
 
-float income_region1(float wage1);
+double income_region1(double wage1);
 
-float income_region2(float wage2);
+double income_region2(double wage2);
 
-float price_index_region1(float wage1, float wage2);
+double price_index_region1(double wage1, double wage2);
 
-float price_index_region2(float wage1, float wage2);
+double price_index_region2(double wage1, double wage2);
 
-float wage_region1(float income1, float income2, float price_index1, float price_index2);
+double wage_region1(double income1, double income2, double price_index1, double price_index2);
 
-float wage_region2(float income1, float income2, float price_index1, float price_index2);
+double wage_region2(double income1, double income2, double price_index1, double price_index2);
 
-float real_wage_region1(float wage1, float price_index1);
+double real_wage_region1(double wage1, double price_index1);
 
-float real_wage_region2(float wage2, float price_index2);
+double real_wage_region2(double wage2, double price_index2);
 
 //Dinamics
 
-float average_real_wage(float real_wage1, float real_wage2);
+double average_real_wage(double real_wage1, double real_wage2);
 
-float new_lamda(float average_real_wage0, float real_wage1); //The value of the population share in the next 
+double new_lamda(double average_real_wage0, double real_wage1); //The value of the population share in the next 
 
 //Solver
 
-float goal_function(float wage1, float wage2, float price_index1, float price_index2);
+double goal_function(double wage1, double wage2, double price_index1, double price_index2);
 
-float dwage_region1(float wage1, float wage2, float price_index1, float price_index2);
+double dwage_region1(double wage1, double wage2, double price_index1, double price_index2);
 
-float dwage_region2(float wage1, float wage2, float price_index1, float price_index2);
+double dwage_region2(double wage1, double wage2, double price_index1, double price_index2);
 
-float dprice_index_region1(float wage1, float wage2, float price_index1, float price_index2);
+double dprice_index_region1(double wage1, double wage2, double price_index1, double price_index2);
 
-float dprice_index_region2(float wage1, float wage2, float price_index1, float price_index2);
+double dprice_index_region2(double wage1, double wage2, double price_index1, double price_index2);
 
-float solve();
+double solve();
 
-float solve2();
+double solve2();
 
-//void solve(float lambda0, float pgamma, float mu, float sigma, float T, int iteration limit = 500);
+//void solve(double lambda0, double pgamma, double mu, double sigma, double T, int iteration limit = 500);
 
