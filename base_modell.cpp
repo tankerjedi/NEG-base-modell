@@ -236,6 +236,7 @@ printf("Az slambda értéke: %f\n",slambda_w1);
 
 double dw1, dw2, dg1, dg2;
 
+//Ha kosntans lambdát állítanánk be
 slambda_w1 = -0.2;
 slambda_w2 = -0.2;
 slambda_g1 = -0.2;
@@ -371,7 +372,7 @@ slambda = i * 0.1;
 g2 = g2 + slambda * dprice_index_region2(w1,w2,g1,g2);
 
 F = goal_function(w1,w2,g1,g2);
-printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény értéke: %1.20f\n",w1,dwage_region1(w1,w2,g1,g2),w2,dwage_region2(w1,w2,g1,g2),g1,dprice_index_region1(w1,w2,g1,g2),g2,dprice_index_region2(w1,w2,g1,g2),F);
 
 }
 
