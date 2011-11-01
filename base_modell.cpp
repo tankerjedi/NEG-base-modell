@@ -29,7 +29,7 @@ if (argc > 1) {s3lambda = atof(argv[1]);}
 printf("__________________________Lambda paraméter: %f\n", s3lambda);
 
 
-solve3();
+solve2();
 
 return 0;
 }
@@ -283,11 +283,12 @@ return 0;
 double solve2()
 {
 
-int terjedelem = 10;
-w1 = 1.01;
-w2 = 1.01;
+int terjedelem = 10000;
+w1 = 1.1;
+w2 = 1.1;
 double g1 = price_index_region1(w1,w2);
 double g2 = price_index_region2(w1,w2);
+double lepesk = 0.001;
 
 double F = goal_function(w1, w2, g1, g2);
 
@@ -296,7 +297,7 @@ printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény érték
 
 //double slambda = -2;
 
-double slambda = -0.1 * terjedelem;
+double slambda = -lepesk * terjedelem;
 
 int i,j;
 
@@ -310,12 +311,12 @@ for(i = -terjedelem + 1;i <= terjedelem; i++)
 
 if 
 
-(F > goal_function(w1+i * 0.1 * dwage_region1(w1,w2,g1,g2),w2,g1,g2) 
+(F > goal_function(w1+i * lepesk * dwage_region1(w1,w2,g1,g2),w2,g1,g2) 
 &&  
-goal_function(w1+i*0.1*dwage_region1(w1,w2,g1,g2),w2,g1,g2) < goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2,g1,g2)) 
+goal_function(w1+i*lepesk*dwage_region1(w1,w2,g1,g2),w2,g1,g2) < goal_function(w1+slambda*dwage_region1(w1,w2,g1,g2),w2,g1,g2)) 
 
 {
-slambda = i * 0.1;
+slambda = i * lepesk;
 }
 }
 
@@ -330,12 +331,12 @@ for(i = -terjedelem + 1;i <= terjedelem; i++)
 {
 if 
 
-(F > goal_function(w1,w2+i * 0.1 * dwage_region2(w1,w2,g1,g2),g1,g2) 
+(F > goal_function(w1,w2+i * lepesk * dwage_region2(w1,w2,g1,g2),g1,g2) 
 &&  
-goal_function(w1,w2+i*0.1*dwage_region2(w1,w2,g1,g2),g1,g2) < goal_function(w1,w2+slambda*dwage_region2(w1,w2,g1,g2),g1,g2)) 
+goal_function(w1,w2+i*lepesk*dwage_region2(w1,w2,g1,g2),g1,g2) < goal_function(w1,w2+slambda*dwage_region2(w1,w2,g1,g2),g1,g2)) 
 
 {
-slambda = i * 0.1;
+slambda = i * lepesk;
 }
 }
 
@@ -350,12 +351,12 @@ for(i = -terjedelem + 1;i <= terjedelem; i++)
 {
 if 
 
-(F > goal_function(w1,w2,g1 + i * 0.1 * dprice_index_region1(w1,w2,g1,g2),g2) 
+(F > goal_function(w1,w2,g1 + i * lepesk * dprice_index_region1(w1,w2,g1,g2),g2) 
 &&  
-goal_function(w1,w2,g1 + i *0.1 * dprice_index_region1(w1,w2,g1,g2),g2) < goal_function(w1,w2,g1 + slambda * dprice_index_region1(w1,w2,g1,g2),g2)) 
+goal_function(w1,w2,g1 + i *lepesk * dprice_index_region1(w1,w2,g1,g2),g2) < goal_function(w1,w2,g1 + slambda * dprice_index_region1(w1,w2,g1,g2),g2)) 
 
 {
-slambda = i * 0.1;
+slambda = i * lepesk;
 }
 }
 
@@ -370,12 +371,12 @@ for(i = -terjedelem + 1;i <= terjedelem; i++)
 {
 if 
 
-(F > goal_function(w1,w2,g1,g2 + i * 0.1 * dprice_index_region2(w1,w2,g1,g2)) 
+(F > goal_function(w1,w2,g1,g2 + i * lepesk * dprice_index_region2(w1,w2,g1,g2)) 
 &&  
-goal_function(w1,w2,g1,g2 + i * 0.1 * dprice_index_region2(w1,w2,g1,g2)) < goal_function(w1, w2, g1, g2 + slambda * dprice_index_region2(w1,w2,g1,g2))) 
+goal_function(w1,w2,g1,g2 + i * lepesk * dprice_index_region2(w1,w2,g1,g2)) < goal_function(w1, w2, g1, g2 + slambda * dprice_index_region2(w1,w2,g1,g2))) 
 
 {
-slambda = i * 0.1;
+slambda = i * lepesk;
 }
 }
 
