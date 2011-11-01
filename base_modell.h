@@ -1,7 +1,7 @@
 
 //Parameters
 
-int iteration_limit = 10; //Itertaion limit
+int iteration_limit = 100; //Itertaion limit
 
 double lambda = 0.5; //Region's population share in region1 parameter
 double pgamma =1; //Speed of population moving 
@@ -10,10 +10,10 @@ double s3lambda = -0.1; //derivate step
 double  mu = 0.5; //Cobb-Douglas utility function parameter
 double sigma = 5; //CES utility fucnion parameter
 
-double T = 1.2; //Transportation cost
+double T = 1; //Transportation cost
 
-double w1 = 1; //bérváltozó kezdeti értéke
-double w2 = 1;
+double w1 = 1.1; //bérváltozó kezdeti értéke
+double w2 = 1.1;
 
 //Equations
 
