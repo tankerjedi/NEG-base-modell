@@ -57,5 +57,7 @@ double solve();
 
 double solve2();
 
+double solve3();
+
 //void solve(double lambda0, double pgamma, double mu, double sigma, double T, int iteration limit = 500);
 

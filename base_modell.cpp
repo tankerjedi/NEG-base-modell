@@ -378,3 +378,14 @@ printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, célfüggvény érték
 
 return goal_function(w1,w2,g1,g2);
 }
+
+double solve3()
+{
+double s3lambda = 0.5;
+w1 = 1.1;
+w2 = 1.1;
+double cpi1 = price_index_region1(w1,w2);
+double cp12 = price_index_region2(w1,w2);
+double jov1 = income_region1(w1);
+double jov2 = income_region2(w2);
+}
