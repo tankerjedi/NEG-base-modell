@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 #include "base_modell.h"
 
-int main()
+int main(int argc, char * argv[])
 {
 printf("Simulation starts\n");
 
@@ -19,7 +20,14 @@ printf("Value of dL/dG1: %4.2f\n", dprice_index_region1(1.1,1.1,price_index_regi
 
 printf("Value of dL/dG2: %4.2f\n", dprice_index_region2(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-solve2();
+
+//bemeneti érték vizsgálat és kiíratás
+//char * vege;
+if (argc > 1) {s3lambda = atof(argv[1]);}
+printf("__________________________Lambda paraméter: %f\n", s3lambda);
+
+
+solve3();
 
 return 0;
 }
@@ -381,11 +389,32 @@ return goal_function(w1,w2,g1,g2);
 
 double solve3()
 {
-double s3lambda = 0.5;
-w1 = 1.1;
-w2 = 1.1;
+//változók kezdeti értékei
+int i;
 double cpi1 = price_index_region1(w1,w2);
-double cp12 = price_index_region2(w1,w2);
+double cpi2 = price_index_region2(w1,w2);
+double dw1, dw2, dcpi1, dcpi2;
+
+for(i = 1; i <= iteration_limit; i++)
+{
+//derivált értékek
+dw1 = dwage_region1(w1,w2,cpi1,cpi2);
+dw2 = dwage_region2(w1,w2,cpi1,cpi2);
+dcpi1 = dprice_index_region1(w1,w2,cpi1,cpi2);
+dcpi2 = dprice_index_region1(w1,w2,cpi1,cpi2);
+
+//pontok kiszámítása
+w1 = w1 + s3lambda * dw1;
+w2 = w2 + s3lambda * dw2;
+cpi1 = cpi1 + s3lambda * dcpi1;
+cpi2 = cpi2 + s3lambda * dcpi2;
+
+//célfüggvény érékének kiíratása
+printf("A célfüggvény értéke %f \n",goal_function(w1,w2,cpi1,cpi2));
+}
+//értékek kiíratása
+
 double jov1 = income_region1(w1);
 double jov2 = income_region2(w2);
+printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, jöv1:%f, jöv2:%f\n",w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),jov1,jov2);
 }
