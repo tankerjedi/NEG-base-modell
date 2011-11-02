@@ -26,6 +26,8 @@ printf("Value of dL/dG2: %4.2f\n", dprice_index_region2(1.1,1.1,price_index_regi
 //bemeneti érték vizsgálat és kiíratás
 //char * vege;
 if (argc > 1) {s3lambda = atof(argv[1]);}
+if (argc > 2) {w1 = atof(argv[2]);}
+if (argc > 3) {w2 = atof(argv[3]);}
 printf("__________________________Lambda paraméter: %f\n", s3lambda);
 
 
