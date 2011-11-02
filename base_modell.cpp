@@ -413,11 +413,13 @@ cpi1 = cpi1 + s3lambda * dcpi1;
 cpi2 = cpi2 + s3lambda * dcpi2;
 
 //célfüggvény érékének kiíratása
-printf("A célfüggvény értéke %2.50f \n",goal_function(w1,w2,cpi1,cpi2));
+//printf("A célfüggvény értéke %2.50f \n",goal_function(w1,w2,cpi1,cpi2));
+
+printf("%3d/ w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, jöv1:%f, jöv2:%f, célérték: %f\n",i,w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),income_region1(w1),income_region2(w2),goal_function(w1,w2,cpi1,cpi2));
 }
 //értékek kiíratása
 
-double jov1 = income_region1(w1);
-double jov2 = income_region2(w2);
-printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, jöv1:%f, jöv2:%f\n",w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),jov1,jov2);
+//double jov1 = income_region1(w1);
+//double jov2 = income_region2(w2);
+//printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, jöv1:%f, jöv2:%f\n",w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),jov1,jov2);
 }

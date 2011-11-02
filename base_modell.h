@@ -1,7 +1,7 @@
 
 //Parameters
 
-int iteration_limit = 500; //Itertaion limit
+int iteration_limit = 100; //Itertaion limit
 
 double lambda = 0.5; //Region's population share in region1 parameter
 double pgamma =1; //Speed of population moving 
