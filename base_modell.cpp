@@ -398,6 +398,10 @@ double cpi1 = price_index_region1(w1,w2);
 double cpi2 = price_index_region2(w1,w2);
 double dw1, dw2, dcpi1, dcpi2;
 
+//fejléc
+printf("Iteráció \t w1 \t dw1 \t w2 \t dw2 \t g1 \t dg1 \t  g2 \t  dg2 \t jöv1 \t jöv2 \t célérték\n");
+
+
 for(i = 1; i <= iteration_limit; i++)
 {
 //derivált értékek
@@ -415,7 +419,7 @@ cpi2 = cpi2 + s3lambda * dcpi2;
 //célfüggvény érékének kiíratása
 //printf("A célfüggvény értéke %2.50f \n",goal_function(w1,w2,cpi1,cpi2));
 
-printf("%3d/ w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, jöv1:%f, jöv2:%f, célérték: %f\n",i,w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),income_region1(w1),income_region2(w2),goal_function(w1,w2,cpi1,cpi2));
+printf("%3d \t %f \t %f \t %f \t %f \t %f \t  %f \t %f \t %f \t %f \t %f \t %f\n",i,w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),income_region1(w1),income_region2(w2),goal_function(w1,w2,cpi1,cpi2));
 }
 //értékek kiíratása
 
