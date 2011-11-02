@@ -29,7 +29,7 @@ if (argc > 1) {s3lambda = atof(argv[1]);}
 printf("__________________________Lambda paraméter: %f\n", s3lambda);
 
 
-solve2();
+solve3();
 
 return 0;
 }
@@ -413,7 +413,7 @@ cpi1 = cpi1 + s3lambda * dcpi1;
 cpi2 = cpi2 + s3lambda * dcpi2;
 
 //célfüggvény érékének kiíratása
-printf("A célfüggvény értéke %f \n",goal_function(w1,w2,cpi1,cpi2));
+printf("A célfüggvény értéke %2.50f \n",goal_function(w1,w2,cpi1,cpi2));
 }
 //értékek kiíratása
 
