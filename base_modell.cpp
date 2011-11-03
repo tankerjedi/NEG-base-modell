@@ -2,15 +2,11 @@
 #include <math.h>
 #include <stdlib.h>
 
-// basic file operations
-#include <iostream>
-#include <fstream>
 
 
 #include "base_modell.h"
 
 
-using namespace std;
 
 int main(int argc, char * argv[])
 {
@@ -413,11 +409,12 @@ printf("Iteráció \t w1 \t dw1 \t w2 \t dw2 \t g1 \t dg1 \t  g2 \t  dg2 \t jöv
 
 
 //fájl megnyitás
-ofstream szovegesfajl;
-szovegesfajl.open ("neg.txt");
-//szovegesfajl << "\n\n\n Új futás\n";
 
-szovegesfajl << "Iteráció \t w1 \t dw1 \t w2 \t dw2 \t g1 \t dg1 \t  g2 \t  dg2 \t jöv1 \t jöv2 \t célérték\n";
+FILE * pFile;
+pFile = fopen ( "neg.txt" , "w" );
+fprintf(pFile,"Iteráció \t w1 \t dw1 \t w2 \t dw2 \t g1 \t dg1 \t  g2 \t  dg2 \t jöv1 \t jöv2 \t célérték\n");
+
+//szovegesfajl << "Iteráció \t w1 \t dw1 \t w2 \t dw2 \t g1 \t dg1 \t  g2 \t  dg2 \t jöv1 \t jöv2 \t célérték\n";
 
 for(i = 1; i <= iteration_limit; i++)
 {
@@ -438,11 +435,12 @@ cpi2 = cpi2 + s3lambda * dcpi2;
 
 printf("%3d \t %f \t %f \t %f \t %f \t %f \t  %f \t %f \t %f \t %f \t %f \t %f\n",i,w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),income_region1(w1),income_region2(w2),goal_function(w1,w2,cpi1,cpi2));
 
-szovegesfajl << i << "\t" << w1 << "\t" <<  dwage_region1(w1,w2,cpi1,cpi2) << "\t" << w2 << "\t" << dwage_region2(w1,w2,cpi1,cpi2) << "\t"<< cpi1 << "\t" << dprice_index_region1(w1,w2,cpi1,cpi2) << "\t" << cpi2 << "\t" << dprice_index_region2(w1,w2,cpi1,cpi2) << "\t" << income_region1(w1) << "\t" << income_region2(w2) << "\t" << goal_function(w1,w2,cpi1,cpi2) << "\n";
+fprintf(pFile,"%3d \t %f \t %f \t %f \t %f \t %f \t  %f \t %f \t %f \t %f \t %f \t %f\n",i,w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),income_region1(w1),income_region2(w2),goal_function(w1,w2,cpi1,cpi2));
+//szovegesfajl << i << "\t" << w1 << "\t" <<  dwage_region1(w1,w2,cpi1,cpi2) << "\t" << w2 << "\t" << dwage_region2(w1,w2,cpi1,cpi2) << "\t"<< cpi1 << "\t" << dprice_index_region1(w1,w2,cpi1,cpi2) << "\t" << cpi2 << "\t" << dprice_index_region2(w1,w2,cpi1,cpi2) << "\t" << income_region1(w1) << "\t" << income_region2(w2) << "\t" << goal_function(w1,w2,cpi1,cpi2) << "\n";
 }
 
 //Fájl bezárása
-szovegesfajl.close();
+fclose (pFile);
 
 //értékek kiíratása
 
