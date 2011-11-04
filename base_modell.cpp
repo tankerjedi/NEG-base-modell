@@ -10,29 +10,33 @@
 
 int main(int argc, char * argv[])
 {
+printf("Parameters: w1, w2, slambda (iteration parameters), T, lambda,sigma (modells parameters)\n");
 printf("Simulation starts\n");
 
-printf("Wage in region1 is: %4.2f\n",wage_region1( income_region1(1), income_region2(1), price_index_region1(1,1), price_index_region2(1,1)));
+//printf("Wage in region1 is: %4.2f\n",wage_region1( income_region1(1), income_region2(1), price_index_region1(1,1), price_index_region2(1,1)));
 
-printf("Price in region1 is by (1,1): %4.2f\n", price_index_region1(1,1));
+//printf("Price in region1 is by (1,1): %4.2f\n", price_index_region1(1,1));
 
-printf("Value of goal function: %4.10f\n",goal_function(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
+//printf("Value of goal function: %4.10f\n",goal_function(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-printf("Value of dL/dw1: %4.2f\n", dwage_region1(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
+//printf("Value of dL/dw1: %4.2f\n", dwage_region1(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-printf("Value of dL/dw2: %4.2f\n", dwage_region2(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
+//printf("Value of dL/dw2: %4.2f\n", dwage_region2(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-printf("Value of dL/dG1: %4.2f\n", dprice_index_region1(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
+//printf("Value of dL/dG1: %4.2f\n", dprice_index_region1(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
-printf("Value of dL/dG2: %4.2f\n", dprice_index_region2(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
+//printf("Value of dL/dG2: %4.2f\n", dprice_index_region2(1.1,1.1,price_index_region1(1.1,1.1),price_index_region2(1.1,1.1)));
 
 
 //bemeneti érték vizsgálat és kiíratás
 //char * vege;
-if (argc > 1) {s3lambda = atof(argv[1]);}
-if (argc > 2) {w1 = atof(argv[2]);}
-if (argc > 3) {w2 = atof(argv[3]);}
-printf("__________________________Lambda paraméter: %f\n", s3lambda);
+if (argc > 1) {w1 = atof(argv[1]);}
+if (argc > 2) {w2 = atof(argv[2]);}
+if (argc > 3) {s3lambda = atof(argv[3]);}
+if (argc > 4) {T = atof(argv[4]);}
+if (argc > 5) {lambda = atof(argv[5]);}
+if (argc > 6) {sigma = atof(argv[6]);}
+//printf("__________________________Lambda paraméter: %f\n", s3lambda);
 
 
 solve3();
@@ -413,6 +417,13 @@ printf("Iteráció \t w1 \t dw1 \t w2 \t dw2 \t g1 \t dg1 \t  g2 \t  dg2 \t jöv
 FILE * pFile;
 pFile = fopen ( "neg.txt" , "w" );
 fprintf(pFile,"Iteráció \t w1 \t dw1 \t w2 \t dw2 \t g1 \t dg1 \t  g2 \t  dg2 \t jöv1 \t jöv2 \t célérték\n");
+
+//Kezdeti értékek
+
+
+printf("%3d \t %f \t %f \t %f \t %f \t %f \t  %f \t %f \t %f \t %f \t %f \t %f\n",0,w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),income_region1(w1),income_region2(w2),goal_function(w1,w2,cpi1,cpi2));
+
+fprintf(pFile,"%3d \t %f \t %f \t %f \t %f \t %f \t  %f \t %f \t %f \t %f \t %f \t %f\n",0,w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),income_region1(w1),income_region2(w2),goal_function(w1,w2,cpi1,cpi2));
 
 //szovegesfajl << "Iteráció \t w1 \t dw1 \t w2 \t dw2 \t g1 \t dg1 \t  g2 \t  dg2 \t jöv1 \t jöv2 \t célérték\n";
 

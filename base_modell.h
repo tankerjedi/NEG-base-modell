@@ -8,7 +8,7 @@ double pgamma =1; //Speed of population moving
 double s3lambda = -0.1; //derivate step 
 
 double  mu = 0.5; //Cobb-Douglas utility function parameter
-double sigma = 5; //CES utility fucnion parameter
+double sigma = 5; //CES utility function parameter
 
 double T = 1; //Transportation cost
 
