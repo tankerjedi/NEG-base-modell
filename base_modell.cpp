@@ -433,7 +433,7 @@ for(i = 1; i <= iteration_limit; i++)
 dw1 = dwage_region1(w1,w2,cpi1,cpi2);
 dw2 = dwage_region2(w1,w2,cpi1,cpi2);
 dcpi1 = dprice_index_region1(w1,w2,cpi1,cpi2);
-dcpi2 = dprice_index_region1(w1,w2,cpi1,cpi2);
+dcpi2 = dprice_index_region2(w1,w2,cpi1,cpi2);
 
 //pontok kiszámítása
 w1 = w1 + s3lambda * dw1;
@@ -453,9 +453,4 @@ fprintf(pFile,"%3d \t %f \t %f \t %f \t %f \t %f \t  %f \t %f \t %f \t %f \t %f 
 //Fájl bezárása
 fclose (pFile);
 
-//értékek kiíratása
-
-//double jov1 = income_region1(w1);
-//double jov2 = income_region2(w2);
-//printf("w1: %f, %f , w2: %f, %f, g1: %f, %f,  g2: %f, %f, jöv1:%f, jöv2:%f\n",w1,dwage_region1(w1,w2,cpi1,cpi2),w2,dwage_region2(w1,w2,cpi1,cpi2),cpi1,dprice_index_region1(w1,w2,cpi1,cpi2),cpi2,dprice_index_region2(w1,w2,cpi1,cpi2),jov1,jov2);
 }
