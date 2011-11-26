@@ -5,7 +5,8 @@ int iteration_limit = 100; //Itertaion limit
 
 double lambda = 0.5; //Region's population share in region1 parameter
 double pgamma =1; //Speed of population moving 
-double s3lambda = -0.1; //derivate step 
+double steplambda1 = -0.1; //derivate step 1
+double steplambda2 = -0.4; //derivate step 2
 
 double  mu = 0.5; //Cobb-Douglas utility function parameter
 double sigma = 5; //CES utility function parameter

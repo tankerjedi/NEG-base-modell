@@ -32,7 +32,7 @@ printf("Simulation starts\n");
 //char * vege;
 if (argc > 1) {w1 = atof(argv[1]);}
 if (argc > 2) {w2 = atof(argv[2]);}
-if (argc > 3) {s3lambda = atof(argv[3]);}
+if (argc > 3) {steplambda1 = atof(argv[3]);}
 if (argc > 4) {T = atof(argv[4]);}
 if (argc > 5) {lambda = atof(argv[5]);}
 if (argc > 6) {sigma = atof(argv[6]);}
@@ -436,10 +436,10 @@ dcpi1 = dprice_index_region1(w1,w2,cpi1,cpi2);
 dcpi2 = dprice_index_region2(w1,w2,cpi1,cpi2);
 
 //pontok kiszámítása
-w1 = w1 + s3lambda * dw1;
-w2 = w2 + s3lambda * dw2;
-cpi1 = cpi1 + s3lambda * dcpi1;
-cpi2 = cpi2 + s3lambda * dcpi2;
+w1 = w1 + steplambda1 * dw1;
+w2 = w2 + steplambda1 * dw2;
+cpi1 = cpi1 + steplambda2 * dcpi1;
+cpi2 = cpi2 + steplambda2 * dcpi2;
 
 //célfüggvény érékének kiíratása
 //printf("A célfüggvény értéke %2.50f \n",goal_function(w1,w2,cpi1,cpi2));
